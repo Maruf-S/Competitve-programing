@@ -1,0 +1,18 @@
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        if(x<0):
+            x = str(-x) +"-"
+            if (abs(int(x[::-1])) < (2 ** 31 - 1)):
+               return int(((x)[::-1]))
+            else:
+               return 0
+        else:
+            x = str(x)
+            if (int(x[::-1]))<=(2 ** 31 - 1):
+                return int(x[::-1])
+            else:
+                return 0
