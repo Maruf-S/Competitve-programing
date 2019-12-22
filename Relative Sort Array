@@ -1,0 +1,12 @@
+class Solution(object):
+    def relativeSortArray(self, ls1, ls2):
+        ans_l=[]
+        elements = []
+        for i in ls2:
+            for _ in range(ls1.count(i)):
+                ans_l.append(i)
+        for i in ls1:
+            if ls2.count(i)==0:
+                elements.append(i)
+        elements.sort()
+        return(ans_l+elements)
