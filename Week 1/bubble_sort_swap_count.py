@@ -16,8 +16,6 @@ def countSwaps(array):
     length = len(array)
     swaps = 0
     for i in range(length):
-        #check if sorted
-        sorted = False
         for j in range(length-1):
             if(array[j]>array[j+1]):
                 array[j], array[j + 1] = array[j + 1], array[j]
