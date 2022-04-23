@@ -10,7 +10,6 @@ def rearrangeArray(nums):
             if(nums[i]==(nums[i-1]+nums[i+1])/2):
                 nums[i-1],nums[i] = nums[i],nums[i-1]
                 clear = False
-                print("Swapped")
     print(nums) 
     
 rearrangeArray([3,4,0,2,5])
