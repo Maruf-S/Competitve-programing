@@ -1,10 +1,8 @@
-
+import math
 def theater_square(values):
-    # uncoveredL = values[0]%values[2]
-    # uncoveredw = values[1]%values[2]
-    coveredL = values[0]//values[2]
-    coveredW = values[1]//values[2]
-    print(coveredL+coveredW+2)
+    l = math.ceil(values[0]/values[2])
+    w = math.ceil(values[1]/values[2])
+    print(l*w)
     pass
 
 def inlt():
