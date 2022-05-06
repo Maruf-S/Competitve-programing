@@ -1,12 +1,17 @@
 class Solution(object):
-    def shortestSubarray(self, A, K):
-        d = collections.deque([[0, 0]])
-        res, cur = len(A)+1, 0
-        for i, a in enumerate(A):
-            cur += a
-            while d and cur - d[0][1] >= K:
-                res = min(res, i + 1 - d.popleft()[0])
-            while d and cur <= d[-1][1]:
-                d.pop()
-            d.append([i + 1, cur])
-        return res if res < len(A)+1 else -1
+    def shortestSubarray(self, nums, k):
+
+        import collections
+        n = len(nums)
+        pre_sums = [0]
+        for i in range(n):
+            pre_sums.append(nums[i]+pre_sums[-1])
+        mono_q = collections.deque()
+        ans = n+1
+        for idx,s in enumerate(pre_sums):
+            while mono_q and s-pre_sums[mono_q[0]] >=k:
+                ans = min(ans,idx -mono_q.popleft() )
+            while mono_q and s <= pre_sums[mono_q[-1]]:
+                mono_q.pop()
+            mono_q.append(idx)
+        return ans if ans < n+1 else -1
