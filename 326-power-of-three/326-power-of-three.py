@@ -1,4 +1,5 @@
-powers = set([pow(3, i) for i in xrange(200)])
-class Solution(object):
-    def isPowerOfThree(self, num):
-        return num in powers
+class Solution:
+    def isPowerOfThree(self, n: int) -> bool:
+        if n == 1: return True
+        elif n < 1: return False
+        return self.isPowerOfThree(n/3)
