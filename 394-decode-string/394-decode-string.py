@@ -7,7 +7,7 @@ class Solution:
             if(s[i]!="["):
                 stack.append(s[i])
                 i+=1
-            else:
+            elif(s[i]=="["):
                 m = ""
                 while stack[-1]!="]":
                     m+=stack.pop()
