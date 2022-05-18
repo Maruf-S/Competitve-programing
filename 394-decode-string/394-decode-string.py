@@ -4,7 +4,7 @@ class Solution:
         s= s[::-1]
         i = 0
         while i < len(s):
-            if(s[i]!="[" and not s[i].isdigit()):
+            if(s[i]!="["):
                 stack.append(s[i])
                 i+=1
             elif(s[i]=="["):
