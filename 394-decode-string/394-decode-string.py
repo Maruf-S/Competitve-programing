@@ -9,7 +9,7 @@ class Solution:
                 i+=1
             elif(s[i]=="["):
                 m = ""
-                while stack and stack[-1]!="]":
+                while stack[-1]!="]":
                     m+=stack.pop()
                 stack.pop()
                 i+=1
