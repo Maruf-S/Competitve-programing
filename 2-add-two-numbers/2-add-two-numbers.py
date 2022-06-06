@@ -6,7 +6,7 @@
 class Solution(object):
      def addTwoNumbers(self, l1, l2):
             carry = 0;
-            res = n = ListNode(0);
+            res = n = ListNode();
             while l1 or l2 or carry:
                 if l1:
                     carry += l1.val
