@@ -5,11 +5,13 @@
 #         self.next = next
 class Solution(object):
     def insertionSortList(self, head):
-            dummy = start = prev = ListNode(-5001, head)
+            dummy = ListNode(-5001, head)
+            prev = head
+            head = head.next
             while head:
                 current = head.val
                 if prev.val > current:
-                    iterate = start
+                    iterate = dummy
                     while iterate != head:
                         if iterate.val > current:
                             temp = iterate.val
