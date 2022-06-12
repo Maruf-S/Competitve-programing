@@ -16,9 +16,9 @@ class Solution(object):
                 head = head.next
             else:
                 temp = dummy
-                while current > temp.next.val:
+                while current > temp.next.val and temp != head:
                     temp = temp.next
-
+                curEle = head
                 nextEle = head.next
                 #! Deattach head
                 prev.next = head.next
@@ -27,5 +27,5 @@ class Solution(object):
                 temp.next = head
 
                 head = nextEle
-
+                # Prev doesn't change because the curr element is removed
         return dummy.next
