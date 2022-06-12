@@ -16,7 +16,7 @@ class Solution(object):
                 head = head.next
             else:
                 temp = dummy
-                while current > temp.next.val and temp != head:
+                while current > temp.next.val:
                     temp = temp.next
 
                 nextEle = head.next
