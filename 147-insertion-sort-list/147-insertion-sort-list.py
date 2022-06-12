@@ -9,8 +9,8 @@ class Solution(object):
             while head:
                 current = head.val
                 if(prev.val < current):
+                    prev = head
                     head = head.next
-                    prev = prev.next
                 else:
                     iterate = start
                     while iterate != head:
@@ -20,6 +20,6 @@ class Solution(object):
                             head.val = temp
                             current = temp
                         iterate = iterate.next
+                    prev = head
                     head = head.next
-                    prev = prev.next
             return dummy.next
