@@ -8,10 +8,7 @@ class Solution(object):
             dummy = start = prev = ListNode(-5001, head)
             while head:
                 current = head.val
-                if(prev.val < current):
-                    prev = head
-                    head = head.next
-                else:
+                if prev.val > current:
                     iterate = start
                     while iterate != head:
                         if iterate.val > current:
@@ -20,6 +17,6 @@ class Solution(object):
                             head.val = temp
                             current = temp
                         iterate = iterate.next
-                    prev = head
-                    head = head.next
+                prev = head
+                head = head.next
             return dummy.next
