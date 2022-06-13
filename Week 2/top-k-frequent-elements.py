@@ -1,18 +1,11 @@
-class Solution(object):
-    def topKFrequent(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: List[int]
-        """
-        result = []
-        from collections import Counter
-        from operator import itemgetter
-        count  = Counter(nums)
-        count = list(count.items())
-        count.sort(key=lambda x:x[1],reverse=True)
-        i = 0
-        while i<k:
-            result.append(count[i][0])
-            i+=1
-        return result
+def removeKdigits(num, k):
+    """
+    :type num: str
+    :type k: int
+    :rtype: str
+    """
+    n = []
+    for i,j in enumerate(num[::-1]):
+        n.append((i+1,int(j)))
+    n.sort(key=lambda x: x[0]*x[1],reverse=True)
+    print(n)
