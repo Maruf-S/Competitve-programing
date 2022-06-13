@@ -16,6 +16,7 @@ class Solution:
             rev.next = temp2
             slow = temp3
         if fast:
+            #Skip the middle element(odd no of elements)
             slow = slow.next
         while rev and rev.val == slow.val:
             slow = slow.next
