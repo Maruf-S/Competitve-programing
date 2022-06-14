@@ -14,5 +14,7 @@ class Solution:
             pre = slow
             fast = fast.next.next
             slow = slow.next
+        print(slow.val)
+        print(pre.val)
         pre.next = pre.next.next
         return dummy.next
