@@ -8,14 +8,22 @@ class Solution:
             if(not node or not node.next):
                 return node
 
+            # left = node
+            # right, fast = node, node.next
+            # while fast and fast.next:
+            #     fast = fast.next.next
+            #     right = right.next
+            # temp = right.next
+            # right.next = None
+            # right = temp
+
             left = node
-            right, fast = node, node.next
+            pre,right,fast = None,node,node
             while fast and fast.next:
                 fast = fast.next.next
+                pre = right
                 right = right.next
-            temp = right.next
-            right.next = None
-            right = temp
+            pre.next = None
 
             leftList = self.sortList(left)
             rightList = self.sortList(right)
