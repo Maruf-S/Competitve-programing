@@ -11,10 +11,8 @@ class LRUCache:
         self.left, self.right = ListNode(0,0),ListNode(0,0)
         self.left.left,self.right.prev = self.right,self.left
     def deleteNode(self,node):
-        before = node.prev
-        after = node.next
-        before.next = node.next
-        after.prev = node.prev
+        node.prev.next = node.next
+        node.next.prev = node.prev
     def insertRight(self,node):
         rm = self.right.prev
         node.next = self.right
