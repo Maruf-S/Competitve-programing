@@ -3,7 +3,7 @@ class LFUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
         self.freq_to_key = defaultdict(OrderedDict)
-        self.key_to_freq = defaultdict(int)
+        self.key_to_freq = defaultdict()
         self.min_freq = 1
         
 
