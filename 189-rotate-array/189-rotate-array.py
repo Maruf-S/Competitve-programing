@@ -1,14 +1,14 @@
 class Solution:
+    def reverse(self,l,r,arr):
+        while l<r:
+            arr[l],arr[r] = arr[r],arr[l]
+            l+=1
+            r-=1
     def rotate(self, nums: List[int], k: int) -> None:
         """
         Do not return anything, modify nums in-place instead.
         """
-        n = len(nums)
-        res = [0]*n
-        for i in range(n):
-            if(i+k <= n-1):
-                res[i+k] = nums[i]
-            else:
-                res[(i+k)%n] = nums[i]
-        nums[:] = list(res)
-            
+        self.reverse(0,len(nums)-1,nums)
+        k = k % len(nums)
+        self.reverse(0,k-1,nums)
+        self.reverse(k,len(nums)-1,nums)
