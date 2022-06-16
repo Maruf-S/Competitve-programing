@@ -10,7 +10,10 @@ class Solution:
                 res += 1
                 r -= 1
                 l += 1
-            elif(bt > limit):
+            elif r==l:
+                res +=1 
+                break
+            else:
                 res += 1
                 r -= 1
         return res
