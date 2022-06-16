@@ -4,7 +4,7 @@ class Solution:
         used = {}
         
         for i,j in enumerate(s):
-            if j in used and l<=used[j]:
+            if j in used and used[j]>=l:
                 l = used[j] + 1
             else:
                 res = max(res,i-l+1)
