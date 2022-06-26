@@ -4,7 +4,7 @@ class Solution:
         basket = {}
         for i,j in enumerate(fruits):
             basket[j] = basket.get(j,0) + 1
-            while len(basket)>2 :
+            if len(basket)>2 :
                 basket[fruits[l]] -= 1
                 if(basket[fruits[l]]<=0):del basket[fruits[l]]
                 l += 1
