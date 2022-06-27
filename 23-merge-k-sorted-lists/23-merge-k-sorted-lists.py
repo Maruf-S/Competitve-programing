@@ -5,13 +5,13 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        amount = len(lists)
-        interval = 1
-        while interval < amount:
-            for i in range(0, amount - interval, interval * 2):
-                lists[i] = self.mergeTwoLists(lists[i], lists[i + interval])
-            interval *= 2
-        return lists[0] if amount > 0 else None
+        if not lists:
+            return None
+        if len(lists) == 1:
+            return lists[0]
+        l,r = self.mergeKLists(lists[:len(lists)//2]),self.mergeKLists(lists[len(lists)//2:])
+        return self.mergeTwoLists(l,r)
+    
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = head = ListNode()
         
