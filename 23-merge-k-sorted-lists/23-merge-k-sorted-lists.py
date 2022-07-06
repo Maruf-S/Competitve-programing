@@ -6,7 +6,6 @@ class Solution:
         for i in range(len(lists)):
             if lists[i]:
                 heapq.heappush(h, (lists[i].val, i))
-                # lists[i] = lists[i].next
 
         while h:
             val, i = heapq.heappop(h)
