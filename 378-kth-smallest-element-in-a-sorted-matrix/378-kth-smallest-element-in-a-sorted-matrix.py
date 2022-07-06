@@ -3,7 +3,7 @@ class Solution:
         h = []
         for i in matrix:
             for j in i:
-                heapq.heappush(h,j)
-        for i in range(k-1):
-            heapq.heappop(h)
-        return heapq.heappop(h)
+                heapq.heappush(h,-j)
+                if len(h) > k:
+                    heapq.heappop(h)
+        return -heapq.heappop(h)
