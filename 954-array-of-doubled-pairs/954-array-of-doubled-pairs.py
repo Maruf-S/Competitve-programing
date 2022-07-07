@@ -1,8 +1,17 @@
-class Solution:
-    def canReorderDoubled(self, arr: List[int]) -> bool:
-            c = collections.Counter(arr)
-            for x in sorted(c, key=abs):
-                if c[x] > c[2 * x]:
-                    return False
-                c[2 * x] -= c[x]
-            return True
+class Solution(object):
+    def canReorderDoubled(self, A):
+        """
+        :type arr: List[int]
+        :rtype: bool
+        """
+        count = collections.Counter(A)
+        for x in sorted(A, key = abs):
+            if count[x] == 0: 
+                continue
+            if count[2*x] == 0: 
+                return False
+            count[x] -= 1
+            count[2*x] -= 1
+
+        return True
+        
