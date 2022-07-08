@@ -1,0 +1,14 @@
+import sys
+class Solution:
+    def countPairs(self, nums: List[int]) -> int:
+        pow2 = []
+        for i in range(1,2):
+            pow2.append(2**i)
+        count = 0
+        d = Counter()
+        for i,j in enumerate(nums):
+            for k in range(22): 
+                count += d[2**k - j]
+            d[j]+=1
+            
+        return count % ((10**9) + 7)
