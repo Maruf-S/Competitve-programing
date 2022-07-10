@@ -7,12 +7,16 @@ class Solution(object):
         """
         result = []
         from collections import Counter
-        from operator import itemgetter
         count  = Counter(nums)
         count = list(count.items())
-        count.sort(key=lambda x:x[1],reverse=True)
-        i = 0
-        while i<k:
-            result.append(count[i][0])
-            i+=1
-        return result
+        res = []
+        # bc = [[]]* len(nums)
+        bc = [[] for i in range(len(nums)+1)]
+        for i,j in count:
+            bc[j].append(i)
+        res = []
+        for i in bc[::-1]:
+            res.extend(i)
+            if len(res) >= k:
+                return res
+        
