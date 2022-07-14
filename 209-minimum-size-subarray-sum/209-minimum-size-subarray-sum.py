@@ -3,12 +3,13 @@ class Solution:
         n = len(nums) + 1
         mw = n
         cur = 0
-        q = deque()
+        l = 0
         for i,j in enumerate(nums):
             cur += j
             if cur >= k:
-                mw = min(mw,i+1)
-            while q and cur - q[0][1] >= k:
-                mw = min(mw,i-q.popleft()[0])
-            q.append([i,cur])
+                mw = min(mw,i-l+1)
+            while cur - nums[l] >=k:
+                cur-=nums[l]
+                l += 1
+                mw = min(mw,i-l+ 1)
         return mw if mw!=n else 0
