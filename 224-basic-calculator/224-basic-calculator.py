@@ -1,25 +1,27 @@
 class Solution:
     def calculate(self, s):
-        num = res = 0
-        sign = 1
-        stack = []
-        for ss in s:
-            if ss.isdigit():
-                num = num*10 + int(ss)
-            elif ss in "+-":
-                res += sign * num
-                sign = -1 if ss == "-" else 1
+        def update(num,sign):
+            if sign == "+":
+                stack.append(num)
+            elif sign == "-":
+                stack.append(-num)
+        i, num, stack, sign = 0, 0, [], "+"
+        while i < len(s):
+            c = s[i]
+            if c.isdigit():
+                num = num*10 + int(c)
+            elif c in "+-":
+                update(num,sign)
                 num = 0
-            elif ss == "(":
-                stack.append(res)
-                stack.append(sign)
-                res = 0
-                num = 0
-                sign = 1
-            elif ss == ")":
-                res += sign * num
-                res *= stack.pop()
-                res += stack.pop()
-                num = 0
-                sign  = 1
-        return res + num*sign
+                sign = c
+            elif c == "(":
+                res,j = self.calculate(s[i+1:])
+                # update(res,sign)
+                num = res
+                i = i + j 
+            elif c == ")":
+                update(num,sign)
+                return sum(stack), i + 1
+            i+=1
+        update(num,sign)
+        return sum(stack)
