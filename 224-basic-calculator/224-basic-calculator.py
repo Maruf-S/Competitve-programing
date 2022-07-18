@@ -20,10 +20,9 @@ class Solution:
                     update(res,sign)
                     num = 0
                     i = j
-                    continue
                 elif c == ")":
                     update(num,sign)
-                    return sum(stack), i + 1
+                    return sum(stack), i
                 i+=1
             update(num,sign)
             return sum(stack)
