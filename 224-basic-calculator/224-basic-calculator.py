@@ -16,8 +16,8 @@ class Solution:
                 sign = c
             elif c == "(":
                 res,j = self.calculate(s[i+1:])
-                # update(res,sign)
-                num = res
+                update(res,sign)
+                num = 0
                 i = i + j 
             elif c == ")":
                 update(num,sign)
