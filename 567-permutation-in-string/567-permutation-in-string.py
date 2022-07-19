@@ -6,7 +6,7 @@ class Solution:
         l = 0
         for i,j in enumerate(s2):
             s2c[j] = s2c.get(j,0) + 1
-            while i - l + 1 > s1l:
+            if i - l + 1 > s1l:
                 s2c[s2[l]] -= 1
                 l += 1
             
