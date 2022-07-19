@@ -8,14 +8,11 @@ class Solution:
             s2c[j] = s2c.get(j,0) + 1
             if i - l + 1 > s1l:
                 s2c[s2[l]] -= 1
+                if s2c[s2[l]] == 0:
+                    del s2c[s2[l]]
                 l += 1
             
             if i-l+1 >= s1l:
-                res = True
-                for k,v in s1c.items():
-                    if k not in s2c or s2c[k] != v:
-                        res = False
-                        break
-                if res:
+                if s1c == s2c:
                     return True
         return False
