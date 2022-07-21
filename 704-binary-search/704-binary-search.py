@@ -6,7 +6,7 @@ class Solution(object):
         :rtype: int
         """
         def recur(l,r):
-            mid = l + (r - l + 1)//2
+            mid = l + (r - l )//2
             if l > r:
                 return -1
             if nums[mid] < target:
