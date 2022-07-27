@@ -3,7 +3,7 @@ class Solution:
         l,r = 0, len(nums) - 1
         mini = float("inf")
         while l <= r:
-            if nums[l] <= nums[r]:
+            if nums[l] < nums[r]:
                 mini = min(mini,nums[l])
                 break
             m =  l + (r - l)//2
