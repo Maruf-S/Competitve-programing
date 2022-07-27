@@ -2,7 +2,6 @@ class Solution:
     def findPairs(self, nums, k):
             res = 0
             c = Counter(nums)
-            print(c)
             for i in c:
                 if k > 0 and i + k in c or k == 0 and c[i] > 1 :
                     res += 1
