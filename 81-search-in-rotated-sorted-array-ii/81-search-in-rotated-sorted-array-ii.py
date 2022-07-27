@@ -2,13 +2,13 @@ class Solution:
     def search(self, nums: List[int], target: int) -> int:
         l , r = 0, len(nums) - 1
         while l<=r:
+            while l < r and nums[l] == nums[l + 1]:
+                l += 1
+            while l < r and nums[r] == nums[r - 1]:
+                r -= 1
             m = l + (r-l)//2
             if nums[m] == target:
                 return True
-            # No portions ??
-            while l < m and nums[l] == nums[m]: # tricky part
-                l += 1
-            #? L portion
             if nums[m] >= nums[l]:
                 if target > nums[m] or target < nums[l]:
                     l = m + 1
