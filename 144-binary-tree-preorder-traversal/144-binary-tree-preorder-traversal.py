@@ -13,6 +13,6 @@ class Solution:
                 res.append(root.val)
                 s.append(root)
                 root = root.left
-            root = s.pop()
-            root = root.right
+            node = s.pop()
+            root = node.right
         return res
