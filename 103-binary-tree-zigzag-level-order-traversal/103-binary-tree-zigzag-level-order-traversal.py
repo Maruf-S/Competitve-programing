@@ -12,17 +12,15 @@ class Solution:
         r = []
         flag = True
         while q:
-            temp = []
+            temp = deque([])
             for i in range(len(q)):
                 node  = q.popleft()
                 if node.left:
                     q.append(node.left)
                 if node.right:
                     q.append(node.right)
-                temp.append(node.val)
-            if flag:
-                r.append(temp)
-            else:
-                r.append(temp[::-1])
+                
+                temp.append(node.val) if flag else temp.appendleft(node.val)
+            r.append(temp)
             flag= not flag
         return r
