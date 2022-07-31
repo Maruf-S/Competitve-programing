@@ -7,12 +7,12 @@
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         s = []
-        r = []
         while root or s:
             while root:
                 s.append(root)
                 root = root.left
             node = s.pop()
-            r.append(node.val)
+            k -= 1
+            if k == 0:
+                return node.val
             root = node.right
-        return r[k-1]
