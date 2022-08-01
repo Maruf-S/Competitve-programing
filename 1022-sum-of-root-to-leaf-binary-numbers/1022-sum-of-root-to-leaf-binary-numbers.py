@@ -10,9 +10,9 @@ class Solution:
         def dfs(node,s):
             if not node:
                 return
+            dfs(node.left,s + str(node.val))
             if not node.left and not node.right:
                 return b.append(s + str(node.val))
-            dfs(node.left,s + str(node.val))
             dfs(node.right,s + str(node.val))
         dfs(root,"")
         return(sum(map(lambda x: int(str(int(x,2)),10),b)))
