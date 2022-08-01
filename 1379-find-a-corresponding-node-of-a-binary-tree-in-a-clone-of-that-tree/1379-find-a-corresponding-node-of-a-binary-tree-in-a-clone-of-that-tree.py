@@ -11,9 +11,9 @@ class Solution:
         def dfs(original):
             if not original:
                 return None
+            l =  dfs(original.left)
             if original.val == target.val:
                 return original
-            l =  dfs(original.left)
             r = dfs(original.right)
             if l:
                 steps.append(-1)
