@@ -3,11 +3,6 @@ class Solution:
         l = 0
         r = len(nums) - 1
         while l <= r:
-            print(l,r)
-            while l < r and nums[l] == nums[l + 1]:
-                l += 1
-            while l < r and nums[r] == nums[r - 1]:
-                r -=1
             m = (l+r)//2
             if target > nums[m]:
                 l = m + 1
