@@ -1,17 +1,12 @@
 class Solution:
     def countNegatives(self, grid: List[List[int]]) -> int:
-        def calcBin(row):
-            l = 0
-            r = len(row) - 1
-            while l <= r:
-                m = (l + r)//2
-                if row[m] < 0:
-                    r = m - 1
-                else:
-                    l = m + 1
-            return len(row) - l
+        r = len(grid) - 1
+        c = 0
         count = 0
-        for i in grid:
-            count += calcBin(i)
+        while r >=0 and c < len(grid[0]):
+            if grid[r][c] >= 0:
+                c += 1
+            else:
+                count += len(grid[0]) - c
+                r -= 1
         return count
-            
