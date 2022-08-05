@@ -11,7 +11,8 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
             if slow == fast:
-                while slow != head:
+                slow = head
+                while slow != fast:
                     slow = slow.next
-                    head = head.next
+                    fast = fast.next
                 return slow
