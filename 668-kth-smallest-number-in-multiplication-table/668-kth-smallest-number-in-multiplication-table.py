@@ -5,7 +5,7 @@ class Solution:
             for i in range(1,m + 1):
                 count += min(n,mi//i)
             return count
-        l,r = 0 , m*n
+        l,r = 1 , m*n
         ans = -1
         while l <= r:
             mi = (l+r)//2
