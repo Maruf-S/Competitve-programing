@@ -7,7 +7,7 @@ class Solution:
                 if i >= num:
                     count += 1
             return count == num
-        for i in range(1000):
+        for i in range(max(nums) + 1):
             if logic(i):
                 return i
         return -1
