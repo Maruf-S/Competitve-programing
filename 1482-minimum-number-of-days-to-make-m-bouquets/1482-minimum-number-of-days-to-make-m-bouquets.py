@@ -8,6 +8,7 @@ class Solution:
                     flowers += 1
                 else:
                     flowers = 0
+                    # Streak
                 if flowers == k:
                     bouquet += 1
                     flowers = 0
