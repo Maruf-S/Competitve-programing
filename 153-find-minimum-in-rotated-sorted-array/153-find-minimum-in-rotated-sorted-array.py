@@ -11,5 +11,4 @@ class Solution:
                     r = m -1
             return l
         pivot = findPivot(nums)
-        sechalf = nums[pivot:len(nums)]
-        return sechalf[0]
+        return nums[pivot]
