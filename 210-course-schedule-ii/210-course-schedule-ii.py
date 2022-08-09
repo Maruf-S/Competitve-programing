@@ -22,6 +22,7 @@ class Solution:
             if c not in visited:
                 res.append(c)
             visited[c] = 1
+            prereq[c] = []
             return True
         for i in range(numCourses):
             if dfs(i) == False:
