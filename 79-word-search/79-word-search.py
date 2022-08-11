@@ -18,5 +18,5 @@ class Solution:
         visited = set()
         for row in range(rows):
             for col in range(cols):
-                if dfs(row,col,0) == True:
+                if board[row][col] == word[0] and dfs(row,col,0) == True:
                     return True
