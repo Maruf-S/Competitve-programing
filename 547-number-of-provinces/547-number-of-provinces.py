@@ -6,13 +6,11 @@ class Solution(object):
         """
         s = len(M)
         seen = set()
-        
-        def dfs(p):
-            for q, adj in enumerate(M[p]):
-                if (adj == 1) and (q not in seen):
-                    seen.add(q)
-                    dfs(q)
-        
+        def dfs(i):
+            seen.add(i)
+            for j,val in enumerate(M[i]):
+                if val and j not in seen:
+                    dfs(j)
         cnt = 0
         for i in range(s):
             if i not in seen: 
