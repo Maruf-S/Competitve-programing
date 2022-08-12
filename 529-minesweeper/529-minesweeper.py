@@ -7,11 +7,12 @@ class Solution:
             return board
         rows,cols = len(board),len(board[0])
         def dfs(r,c):
-            if r == rows or r < 0 or c == cols or c < 0 or (r,c) in visited or board[r][c] != "E":
+            if r == rows or r < 0 or c == cols or c < 0 or (r,c) in visited:
                 return
-            # visited.add((r,c))
-            # if b == "M":
-            #     return
+            visited.add((r,c))
+            if board[r][c] == "M":
+                return
+            
             mines = 0
             dirn = [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)]
             for i,j in dirn:
