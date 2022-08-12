@@ -5,18 +5,16 @@ class Solution:
             adj[u].append((w,v))
         t = {}
         q = [(0,k)]
-        print(adj)
         visit = set()
         while q:
             w1,n1 = heapq.heappop(q)
-            if n1 not in visited:
+            if n1 not in visit:
+                t[n1] = w1
                 visit.add(n1)
                 for w,n in adj[n1]:
-                    if n not in visit:
-                        t[n] = w
-                        heappush(q,(w + w1 ,n))
-        print(t)
-        return max(t.values()) if len(t) == n else -1
+                    heappush(q,(w + w1 ,n))
+        return max(t.values()) if len(visit) == n else -1
+
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         adj,visited = defaultdict(list),set()
