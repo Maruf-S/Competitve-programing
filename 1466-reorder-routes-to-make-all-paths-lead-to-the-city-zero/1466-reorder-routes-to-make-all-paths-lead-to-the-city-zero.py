@@ -7,16 +7,16 @@ class Solution:
         for i,j in connections:
             neighbors[i].append(j)
             neighbors[j].append(i)
-        
-        def dfs(city):
-                nonlocal change
+
+        q = deque([0])
+        while q:
+            for i in range(len(q)):
+                city = q.popleft()
+                visit.add(city)
                 for neighbor in neighbors[city]:
                     if neighbor in visit:
                         continue
                     if (neighbor,city) not in edges:
                         change += 1
-                    visit.add(neighbor)
-                    dfs(neighbor)
-        visit.add(0)
-        dfs(0)
+                    q.append(neighbor)
         return change
