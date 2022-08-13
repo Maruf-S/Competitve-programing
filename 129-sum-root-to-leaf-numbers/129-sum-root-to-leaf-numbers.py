@@ -12,8 +12,8 @@ class Solution:
             if not node:
                 return
             if not node.left and not node.right:
-                tsum += int(path+str(node.val))
-            dfs(node.left,path + str(node.val))
-            dfs(node.right,path + str(node.val))
-        dfs(root,"")
+                tsum += (path * 10) + node.val
+            dfs(node.left,path * 10 + node.val)
+            dfs(node.right,path * 10 + node.val)
+        dfs(root,0)
         return tsum
