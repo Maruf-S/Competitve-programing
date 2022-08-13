@@ -9,21 +9,22 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
+        res = []
         s = []
-        prevele = TreeNode(float('-inf'))
+        prevele,first,second = None,None,None
         drops = []
         while s or root:
             while root:
                 s.append(root)
                 root = root.left
             node = s.pop()
-            if node.val < prevele.val:
-                drops.append((prevele,node))
+            if prevele and not first and prevele.val > node.val:
+                first = prevele
+            if first and prevele.val > node.val:
+                second = node
             prevele = node
             root = node.right
-        # print(len(drops))
-        # print(r)
-        if len(drops) == 1: # drops == [(A, B)]
-            drops[0][0].val, drops[0][1].val = drops[0][1].val, drops[0][0].val
-        else: # drops == [(A, X), (Y, B)]
-            drops[0][0].val, drops[1][1].val = drops[1][1].val, drops[0][0].val 
+        first.val,second.val = second.val,first.val
+        
+
+        
