@@ -33,4 +33,5 @@ class Solution:
                         drops.append((prevele,root))
                     prevele = root
                     root = root.right
+                    #Why even live ffs I dont remember consentin to be born for this shit
         drops[0][0].val,drops[-1][1].val = drops[-1][1].val,drops[0][0].val
