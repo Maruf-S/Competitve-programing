@@ -11,20 +11,15 @@ class Solution:
         """
         res = []
         s = []
-        prevele,first,second = None,None,None
+        prevele  = TreeNode(float("-inf"))
         drops = []
         while s or root:
             while root:
                 s.append(root)
                 root = root.left
             node = s.pop()
-            if prevele and not first and prevele.val > node.val:
-                first = prevele
-            if first and prevele.val > node.val:
-                second = node
+            if prevele.val > node.val:
+                drops.append((prevele,node))
             prevele = node
             root = node.right
-        first.val,second.val = second.val,first.val
-        
-
-        
+        drops[0][0].val,drops[-1][1].val = drops[-1][1].val,drops[0][0].val
