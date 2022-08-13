@@ -23,7 +23,8 @@ class Solution:
                     pred.right = cur
                     cur = cur.left
                 else:
-                    res.append(cur.val)
-                    cur = cur.right
-                    pred.right = None
+                    # res.append(cur.val)
+                    # cur = cur.right
+                    # pred.right = None
+                    cur.left = None
         return res
