@@ -8,8 +8,6 @@ class Solution:
         t = {}
         visit = set()
         q = [(0,0,src)]
-        if adj[src] == []:
-            return -1
         while q:
             pr,st,node = heapq.heappop(q)
             if node in t and t[node][1] <= st:
