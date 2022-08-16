@@ -20,6 +20,5 @@ class Solution:
                 visit.add(node)
                 tcost += d
                 for cost,neighbor in adj[node]:
-                    if neighbor not in visit:
-                        heapq.heappush(h,[cost,neighbor])
+                    heapq.heappush(h,[cost,neighbor])
         return tcost
