@@ -8,19 +8,20 @@ class Solution:
             for j in range(len(word)):
                 pattern = word[:j] + "*" + word[j + 1:]
                 nei[pattern].append(word)
-        visit = set([beginWord])
+        visit = set()
         q = deque([beginWord])
         res = 1
         while q:
             for i in range(len(q)):
                 w = q.popleft()
+                if w in visit:
+                    continue
+                visit.add(w)
                 if w == endWord:
                     return res
                 for j in range(len(w)):
                     pattern = w[:j] + "*" + w[j + 1:]
                     for neiWord in nei[pattern]:
-                        if neiWord not in visit:
-                            visit.add(neiWord)
                             q.append(neiWord)
             res += 1
         return 0
