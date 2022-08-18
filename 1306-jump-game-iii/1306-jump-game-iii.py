@@ -1,13 +1,25 @@
 class Solution:
     def canReach(self, arr: List[int], start: int) -> bool:
+        queue = [start]
         visited = set()
-        def canReach(idx):
-            if idx in visited:
-                return False
-            if idx < 0 or idx >= len(arr):
-                return False
-            if arr[idx] == 0:
+        
+        while queue:
+            u = queue.pop(0)
+            if arr[u] == 0:
                 return True
-            visited.add(idx)
-            return canReach(idx + arr[idx]) or canReach(idx - arr[idx])
-        return canReach(start)
+            visited.add(u)
+            
+            nextjump = u + arr[u]
+            if nextjump < len(arr) and nextjump not in visited:
+                if arr[nextjump] == 0:
+                    return True
+                visited.add(nextjump)
+                queue.append(nextjump)
+
+            nextjump = u - arr[u]
+            if nextjump >= 0 and nextjump not in visited:
+                if arr[nextjump] == 0:
+                    return True
+                visited.add(nextjump)
+                queue.append(nextjump)
+        return False
