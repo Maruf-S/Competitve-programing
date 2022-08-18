@@ -13,7 +13,6 @@ class Solution:
                     return False
                 if n1.val == n2.val:
                     return isMirror(n1.left,n2.right) and isMirror(n1.right,n2.left)
-                return False
             if not root:
                 return True
             return isMirror(root.left,root.right)
