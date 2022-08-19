@@ -9,7 +9,6 @@ class Solution:
             if node in d:
                 return d[node]
             if node in visit:
-                # Loop
                 return False
             visit.add(node)
             for nei in graph[node]:
@@ -18,8 +17,8 @@ class Solution:
                     return False
             d[node] = True
             return True
+        visit = set()
         for i in range(len(graph)):
-            visit = set()
             if dfs(i):
                 res.append(i)
         return res
