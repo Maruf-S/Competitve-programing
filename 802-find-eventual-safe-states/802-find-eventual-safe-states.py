@@ -12,12 +12,12 @@ class Solution:
                 # Loop
                 return False
             visit.add(node)
-            con = True
             for nei in graph[node]:
                 if dfs(nei) == False:
-                    con = False
-            d[node] = con
-            return con
+                    d[node] = False
+                    return False
+            d[node] = True
+            return True
         for i in range(len(graph)):
             visit = set()
             if dfs(i):
