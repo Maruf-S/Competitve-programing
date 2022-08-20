@@ -1,18 +1,3 @@
-# class Solution:
-#     def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
-#         s  = list(s)
-#         def shift(c, k):
-#             return chr(ord('a') + (26 + ord(c) - ord('a') + k) % 26)
-#         sim = [0] * len(s)
-#         for start,end,dirn in shifts:
-#             for i in range(start,end + 1):
-#                 sim[i] += (1 if dirn == 1 else -1)
-#         res = []
-#         for i,j in enumerate(sim):
-#             res.append(shift(s[i],j))
-#         return "".join(res)
-
-
 class Solution:
     def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
         cum_shifts = [0 for _ in range(len(s)+1)]
