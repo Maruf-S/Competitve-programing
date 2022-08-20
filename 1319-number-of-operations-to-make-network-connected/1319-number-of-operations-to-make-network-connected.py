@@ -23,7 +23,8 @@ class Solution:
         group = 0
         for i,j in connections:
             if union(i,j) == True:
-                n -= 1
+                group += 1
             else:
                 extra += 1
-        return n-1 if extra >= n-1 else -1
+        extran = n - group
+        return extran - 1 if extra >= extran - 1 else -1
