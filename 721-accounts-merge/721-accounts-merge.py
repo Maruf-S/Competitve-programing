@@ -14,31 +14,22 @@ class UnionFind:
                 self.parent[findY] = findX
         
     def find(self, x):
+        # if x not in self.parent:
+        #     self.parent[x] = x
+        #     self.rank[x] = 0
+        # if self.parent[x] == x:
+        #     return x
+        # return self.find(self.parent[x])
         if x not in self.parent:
             self.parent[x] = x
             self.rank[x] = 0
-        if self.parent[x] == x:
             return x
-        return self.find(self.parent[x])
+        p = self.parent[x]
+        while p!= self.parent[p]:
+            p = self.parent[p]
+        return p
 
 class Solution:
-    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
-        uf = UnionFind()
-        user = {}
-        
-        for i, account in enumerate(accounts):
-            for email in account[1:]:
-                if email in user:
-                    uf.union(i, user[email])
-                user[email] = i
-
-        ans = defaultdict(list)
-        for email, par in user.items():
-            ans[uf.find(par)].append(email)
-        res = []
-        for par, emails in ans.items():
-            res.append([accounts[par][0]] + sorted(emails))
-        return res
     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
         users = {}
         uf = UnionFind()
