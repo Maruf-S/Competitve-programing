@@ -8,16 +8,16 @@ class Solution:
         def bfs(st,dst):
             if st not in adj or dst not in adj:
                 return -1
-            q = deque([(1,st)])
+            q = [(1,st)]
             visit = set([st])
             while q:
-                w1, n1 = q.popleft()
+                w1, n1 = heapq.heappop(q)
                 if n1 == dst:
                     return w1
                 for n2,w2 in adj[n1]:
                     if n2 not in visit:
                         visit.add(n2)
-                        q.append([w2 * w1,n2])
+                        heapq.heappush(q,[w2 * w1,n2])
             return -1
         res = []
         for q1,q2 in queries:
