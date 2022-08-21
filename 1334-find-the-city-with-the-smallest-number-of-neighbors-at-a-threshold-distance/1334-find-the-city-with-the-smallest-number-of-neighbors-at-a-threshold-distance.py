@@ -8,6 +8,7 @@ class Solution:
             minh = [(0,city)]
             t = {i:float("inf") for i in range(n)}
             t[city] = 0
+            res = 0
             while minh:
                 w,node = heappop(minh)
                 for nei,wei in adj[node]:
