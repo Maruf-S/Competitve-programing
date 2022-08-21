@@ -12,7 +12,7 @@ class Solution:
             while minh:
                 w,node = heappop(minh)
                 for nei,wei in adj[node]:
-                        if wei + w < t[nei] :
+                        if wei + w < t[nei] and wei + w <= k:
                             t[nei] = wei + w
                             heapq.heappush(minh,(w + wei,nei))
             res = -1
