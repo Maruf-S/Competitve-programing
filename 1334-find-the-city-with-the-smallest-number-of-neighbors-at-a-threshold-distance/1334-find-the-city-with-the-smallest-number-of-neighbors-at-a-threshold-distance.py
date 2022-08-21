@@ -20,22 +20,3 @@ class Solution:
                     res += 1
             return res
         return max([(getNeighbors(city), city) for city in range(n)], key=lambda x: (-x[0], x[1]))[-1]
-    # def findReachByDjikstra(self, node, adj, distance, n):
-    #     dest = [float('inf')] * n
-    #     dest[node] = 0
-    #     heap = [(0, node)]
-    #     visited = set()
-    #     while heap:
-    #         w1, n1 = heappop(heap)
-    #         visited.add(n)
-    #         for n2, w2 in adj[n1]:
-    #             if n2 not in visited:
-    #                 new_weight = w1 + w2
-    #                 if new_weight <= dest[n2]:
-    #                     dest[n2] = new_weight
-    #                     heappush(heap, (new_weight, n2))
-    #     reach = 0
-    #     for i in dest:
-    #         if i <= distance:
-    #             reach += 1
-    #     return reach
