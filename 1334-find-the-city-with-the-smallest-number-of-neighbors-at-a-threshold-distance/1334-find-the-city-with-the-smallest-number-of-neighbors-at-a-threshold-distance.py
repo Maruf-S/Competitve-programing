@@ -9,12 +9,15 @@ class Solution:
             t = {i:float("inf") for i in range(n)}
             t[city] = 0
             res = 0
+            visit = set()
             while minh:
                 w,node = heappop(minh)
                 for nei,wei in adj[node]:
                         if wei + w < t[nei] and wei + w <= k:
+                            visit.add(nei)
                             t[nei] = wei + w
                             heapq.heappush(minh,(w + wei,nei))
+            return len(visit)
             res = -1
             for i in t.values():
                 if i != float("inf"):
