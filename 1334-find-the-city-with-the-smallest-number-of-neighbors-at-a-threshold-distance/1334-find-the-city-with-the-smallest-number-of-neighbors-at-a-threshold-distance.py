@@ -18,9 +18,4 @@ class Solution:
                             t[nei] = wei + w
                             heapq.heappush(minh,(w + wei,nei))
             return len(visit)
-            res = -1
-            for i in t.values():
-                if i != float("inf"):
-                    res += 1
-            return res
         return max([(getNeighbors(city), city) for city in range(n)], key=lambda x: (-x[0], x[1]))[-1]
