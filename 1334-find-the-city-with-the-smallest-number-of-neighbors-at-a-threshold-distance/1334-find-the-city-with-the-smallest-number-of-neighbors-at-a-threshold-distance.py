@@ -17,7 +17,7 @@ class Solution:
                             heapq.heappush(minh,(w + wei,nei))
             res = -1
             for i in t.values():
-                if i <= k:
+                if i != float("inf"):
                     res += 1
             return res
         return max([(getNeighbors(city), city) for city in range(n)], key=lambda x: (-x[0], x[1]))[-1]
