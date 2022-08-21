@@ -14,18 +14,14 @@ class UnionFind:
                 self.parent[findY] = findX
         
     def find(self, x):
-        # if x not in self.parent:
-        #     self.parent[x] = x
-        #     self.rank[x] = 0
-        # if self.parent[x] == x:
-        #     return x
-        # return self.find(self.parent[x])
         if x not in self.parent:
             self.parent[x] = x
             self.rank[x] = 0
             return x
         p = self.parent[x]
         while p!= self.parent[p]:
+            # path compression
+            self.parent[p] = self.parent[self.parent[p]]
             p = self.parent[p]
         return p
 
@@ -41,7 +37,4 @@ class Solution:
         ans = defaultdict(list)
         for user,par in users.items():
             ans[uf.find(par)].append(user)
-        res = []
-        for idx, users in ans.items():
-            res.append([accounts[idx][0]] + sorted(users))
-        return res            
+        return [[accounts[idx][0]] + sorted(users) for idx,users in ans.items()]
