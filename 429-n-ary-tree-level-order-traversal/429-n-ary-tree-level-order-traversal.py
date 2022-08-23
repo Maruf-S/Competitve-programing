@@ -10,15 +10,15 @@ class Solution:
     def levelOrder(self, root: 'Node') -> List[List[int]]:
         if not root:
             return []
-        res = [[root.val]]
+        res = []
         q = deque([root])
         while q:
             temp = []
             for i in range(len(q)):
                 node = q.popleft()
+                temp.append(node.val)
                 for i in node.children:
                     q.append(i)
-                    temp.append(i.val)
             if temp:
                 res.append(temp)
                 
