@@ -1,10 +1,10 @@
 class Solution:
     def maxIncreaseKeepingSkyline(self, grid: List[List[int]]) -> int:
         
-        rows = len(grid)       # Height
-        cols = len(grid[0])    # Width
-        maxr = [max(row) for row in grid]     # As seen from left/right
-        maxc = [max(col) for col in zip(*grid)]   # As seen from top/bottom
+        rows = len(grid)
+        cols = len(grid[0])
+        maxr = [max(row) for row in grid]
+        maxc = [max(col) for col in zip(*grid)]
         tot = 0
         for i in range(rows):
             for j in range(cols):
