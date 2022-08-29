@@ -2,36 +2,30 @@ class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         res = []
         
-        def dfs(subset,i):
-            if i == len(nums):
-                return res.append(subset[::])
-            
-            subset.append(nums[i])
-            dfs(subset,i + 1)
-            subset.pop()
-            if not subset or subset[-1] != nums[i]:                
-                dfs(subset,i + 1)
+        def dfs(path,index):
+            res.append(path[::])
+            for i in range(index,len(nums)):
+                if i > index and nums[i -1] == nums[i]:
+                    continue
+                path.append(nums[i])
+                dfs(path,i + 1)
+                path.pop()
         nums.sort()
         dfs([],0)
         return res
 
 
     
-    
-    
 # class Solution:
 #     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-#         def backtrack(i, curSubset):
-#             if i == len(nums):
-#                 ans.append(curSubset[::])
-#                 return
+#         def backtrack(index, curSubset):
+#             ans.append(curSubset[::])
 
-#             curSubset.append(nums[i])
-#             backtrack(i + 1, curSubset)  # Pick
-#             curSubset.pop()
-
-#             if not curSubset or curSubset[-1] != nums[i]:
-#                 backtrack(i + 1, curSubset)  # Don't pick
+#             for i in range(index, len(nums)):
+#                 if i > index and nums[i] == nums[i - 1]: continue  # Skip duplicates
+#                 curSubset.append(nums[i])
+#                 backtrack(i + 1, curSubset)
+#                 curSubset.pop()
 
 #         nums.sort()
 #         ans = []
