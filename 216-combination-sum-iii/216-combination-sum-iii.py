@@ -5,8 +5,9 @@
 #             if i > 9:
 #                 return
 #             if k == 0:
+#                 print(path)
 #                 if sum(path) == n:
-#                     res.append(path[::])
+#                     res.append(path[:])
 #                 return
 #             path.append(i)
 #             dfs(i+ 1,path,total + i,k - 1)
@@ -20,19 +21,17 @@
 class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
         res=[]
-        def backtrack(i,c,r,s):
-            if i==k:
+        def backtrack(i,c,path,s):
+            if len(path)==k:
                 if s==n:
-                    res.append(r[:])
-                    return
-                else:
-                    return
-            if i>=k or c>9:
+                    res.append(path[:])
                 return
-            r.append(c)
-            backtrack(i+1,c+1,r,s+c)
-            r.pop()
-            backtrack(i,c+1,r,s)
+            if c>9:
+                return
+            path.append(c)
+            backtrack(i+1,c+1,path,s+c)
+            path.pop()
+            backtrack(i,c+1,path,s)
 
         backtrack(0,1,[],0)
         return res
