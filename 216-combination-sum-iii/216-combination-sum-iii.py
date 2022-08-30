@@ -24,6 +24,7 @@ class Solution:
             if i==k:
                 if s==n:
                     res.append(r[:])
+                    return
                 else:
                     return
             if i>=k or c>9:
