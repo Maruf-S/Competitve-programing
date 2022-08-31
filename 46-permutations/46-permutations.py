@@ -6,7 +6,9 @@ class Solution:
             for i in range(len(nums)):
                 if i not in visited:
                     visited.add(i)
-                    backtracking(res,visited,subset+[nums[i]])
+                    subset.append(nums[i])
+                    backtracking(res,visited,subset)
+                    subset.pop()
                     visited.remove(i)
         visited = set()
         res = []
