@@ -1,19 +1,16 @@
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
-        if matrix is None or len(matrix) < 1:
-            return 0
-        
-        rows = len(matrix)
-        cols = len(matrix[0])
-        
-        dp = [[0]*(cols+1) for _ in range(rows+1)]
-        max_side = 0
-        
-        for r in range(rows):
-            for c in range(cols):
-                if matrix[r][c] == '1':
-                    dp[r+1][c+1] = min(dp[r][c], dp[r+1][c], dp[r][c+1]) + 1 # Be careful of the indexing since dp grid has additional row and column
-                    max_side = max(max_side, dp[r+1][c+1])
-                
-        return max_side * max_side
-                
+        rows,cols = len(matrix),len(matrix[0])
+        d = {}
+        def helper(r,c):
+            if r == rows or c == cols:
+                return 0
+            if (r,c) in d:
+                return d[(r,c)]
+            top,bot,diag = helper(r + 1,c),helper(r,c + 1),helper(r+1,c+1)
+            d[(r,c)] = 0
+            if matrix[r][c] == "1":
+                d[(r,c)] = 1 + min(top,bot,diag)
+            return d[(r,c)]
+        helper(0,0)
+        return max(d.values())**2
