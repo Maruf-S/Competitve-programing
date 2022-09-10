@@ -1,6 +1,13 @@
-class Solution:
-    def minCostClimbingStairs(self, cost: List[int]) -> int:
-        cost.append(0)
-        for i in range(len(cost) - 3,-1,-1):
-            cost[i] += min(cost[i + 1],cost[i  + 2])
-        return min(cost[0],cost[1])
+class Solution(object):
+    def minCostClimbingStairs(self, cost):
+        """
+        :type cost: List[int]
+        :rtype: int
+        """
+        dp = [0] * len(cost)
+        dp[-1] = cost[-1]
+        dp[-2] = cost[-2]
+        
+        for i in range(len(cost)-3,-1,-1):
+            dp[i] = cost[i] + min(dp[i + 1],dp[i + 2])
+        return min(dp[0],dp[1])
