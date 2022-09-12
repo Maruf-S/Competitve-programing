@@ -12,5 +12,4 @@ class Solution:
             else:
                 d[(i,k,buying)]  = max(prices[i] + dfs(i + 1,k-1,True),dfs(i + 1,k,False))
             return d[(i,k,buying)]
-        print(d)
         return dfs(0,nt*2,True)
