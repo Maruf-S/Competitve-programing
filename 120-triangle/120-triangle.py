@@ -1,8 +1,8 @@
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        dp = triangle[-1]
-        for i in range(len(triangle) - 2,-1,-1):
-            for j in range(len(triangle[i])):
-                temp =  min(dp[j],dp[j + 1])
-                dp[j] = triangle[i][j] + temp
-        return dp[0]
+        @lru_cache(maxsize=None)
+        def dfs(i,j):
+            if i >= len(triangle) or j >= len(triangle[i]):
+                return 0
+            return triangle[i][j] + min(dfs(i + 1,j),dfs(i + 1,j +  1))
+        return dfs(0,0)
