@@ -1,23 +1,13 @@
-class Solution:
-    def canCross(self, stones: List[int]) -> bool:
-        d = {}
-        def dfs(i,unit,total):
-            if (i,unit,total) in d:
-                return d[(i,unit,total)]
-            if i == len(stones) - 1:
-                if stones[i] == total:
-                    return True
-                else:
-                    return False
-            elif i >= len(stones):
+class Solution(object):
+    def canCross(self, stones):
+        n = len(stones)
+        stoneSet = set(stones)
+        visited = set()
+        def goFurther(value,units):
+            if (value+units not in stoneSet) or ((value,units) in visited):
                 return False
-            if total == stones[i]:
-                d[(i,unit,total)] = dfs(i + 1, unit - 1, total + (unit - 1)) or dfs(i + 1,unit,total + unit) or dfs(i + 1,unit + 1,total + (unit + 1))
-            elif total > stones[i]:
-                d[(i,unit,total)] = dfs(i + 1,unit,total)
-            else:
-                d[(i,unit,total)] =  False
-            return d[(i,unit,total)]
-        x = dfs(1,1,1)
-        # print(d)
-        return x
+            if value+units == stones[n-1]:
+                return True
+            visited.add((value,units))
+            return goFurther(value+units,units) or goFurther(value+units,units-1) or goFurther(value+units,units+1)
+        return goFurther(stones[0],1)
