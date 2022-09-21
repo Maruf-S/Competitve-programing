@@ -1,18 +1,14 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
-        leftMin, leftMax = 0, 0
-        for c in s:
-            if c == "(":
-                leftMin += 1
-                leftMax += 1
-            elif c == ")":
-                leftMin -= 1
-                leftMax -= 1
-            else:
-                leftMin -= 1
-                leftMax += 1
-            if leftMin < 0:
-                leftMin = 0
-            if leftMax < 0:
+        @cache
+        def dp(i,l):
+            if l < 0:
                 return False
-        return leftMin == 0
+            if i == len(s):
+                return l == 0
+            if s[i] == "(":
+                return dp(i + 1,l + 1)
+            elif s[i] == ")":
+                return dp(i + 1,l - 1)
+            return dp(i + 1, l + 1) or dp(i + 1, l) or dp(i + 1,l-1)
+        return dp(0,0)
