@@ -6,6 +6,8 @@ class Solution:
         h = [(0,0,0)]
         while h:
             w,x,y = heappop(h)
+            if x == rows - 1 and y == cols - 1:
+                return w
             if w < lecost[x][y]:
                 lecost[x][y] = w
                 for d in dirn.values():
