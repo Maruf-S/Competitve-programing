@@ -2,15 +2,13 @@ class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         q = deque()
         res = []
-        l = 0
-        for i,j in enumerate(nums):
-            while q and q[-1][1] < j:
+        for i in range(len(nums)):
+            while q and nums[q[-1]] < nums[i]:
                 q.pop()
-            q.append((i,j))
-            
-            while q[0][0] < l:
+            q.append(i)
+            while q and i - q[0] + 1 > k :
                 q.popleft()
-            if i + 1 >= k:
-                res.append(q[0][1])
-                l += 1
+            if i > k - 2:
+                res.append(nums[q[0]])
+            
         return res
