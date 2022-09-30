@@ -11,5 +11,14 @@ class SnapshotArray(object):
         return self.snap_id - 1
 
     def get(self, index, snap_id):
-        i = bisect.bisect(self.A[index], [snap_id + 1]) - 1
-        return self.A[index][i][1]
+        arr = self.A[index]
+        left, right, ans = 0, len(arr) - 1, -1
+        while left <= right:
+            mid = (left + right) // 2
+            if arr[mid][0] <= snap_id:
+                ans = mid
+                left = mid + 1
+            else:
+                right = mid - 1
+        if ans == -1: return 0
+        return arr[ans][1]
