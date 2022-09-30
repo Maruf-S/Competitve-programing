@@ -1,11 +1,13 @@
 class Solution:
     def maxFrequency(self, nums: List[int], k: int) -> int:
-        l = total = window = 0
+        psum = 0
+        res = 0
+        l = 0
         nums.sort()
-        for r in range(len(nums)):
-            total += nums[r]
-            while (r-l+1) * nums[r] > total+k :
-                total-=nums[l]
-                l +=1
-            window = max(window,r-l+1)
-        return window
+        for i,j in enumerate(nums):
+            psum += j
+            while (i - l + 1) * j - psum > k:
+                psum -= nums[l]
+                l += 1
+            res = max(res,i-l + 1)
+        return res
