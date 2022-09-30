@@ -1,17 +1,19 @@
 class Solution:
-    def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
-        adj = {i:[] for i in range(n)}
-        for i,j in enumerate(manager):
-            if j == -1:
+    def numOfMinutes(self, n: int, headID: int, manager: List[int], it: List[int]) -> int:
+        adj = defaultdict(list)
+        for d,s in enumerate(manager):
+            if s == -1:
                 continue
-            adj[j].append(i)
+            adj[s].append((it[s],d))
+        ttr = [float("inf")] * n
         
-        q = deque([[headID,informTime[headID]]])
-        mins = 0
-        while q:
-            for i in range(len(q)):
-                node,ift = q.popleft()
-                mins = max(mins,ift)
-                for sub in adj[node]:
-                    q.append((sub,ift + informTime[sub]))
-        return mins
+        h = [(0,headID)]
+        
+        while h:
+            w,node = heappop(h)
+            if ttr[node] < w:
+                continue
+            ttr[node] = w
+            for w1,nei in adj[node]:
+                heappush(h,(w + w1,nei))
+        return max(ttr)
