@@ -14,7 +14,6 @@ class Solution:
             for w,nei in adj[node]:
                 heappush(h,(w + t,nei))
         mint = arr[-1]
-        
         MOD = (10 ** 9 + 7)
         @lru_cache(2000)
         def dp(i,total):
@@ -23,6 +22,6 @@ class Solution:
             res = 0
             for wei, nei in adj[i]:
                 if total + wei + arr[nei] > mint: continue        
-                res = (res + dp(nei, total + wei)) % MOD
+                res = (res + dp(nei, total + wei))
             return res
         return dp(n-1,0) % MOD
