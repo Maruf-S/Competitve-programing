@@ -1,25 +1,28 @@
 class Solution:
-    def countPaths(self, n, roads):
-        G = defaultdict(list)
-        for x, y, w in roads:
-            G[x].append((y, w))
-            G[y].append((x, w))
-
-        dist = [float('inf')] * n
-        dist[0] = 0
-        cnt = [0]*n
-        cnt[0] = 1
-        heap = [(0, 0)]
-
-        while heap:
-            (min_dist, idx) = heappop(heap)
-            if idx == n-1: return cnt[idx] % (10**9 + 7)
-            for neib, weight in G[idx]:
-                candidate = min_dist + weight
-                if candidate == dist[neib]:
-                    cnt[neib] += cnt[idx]
-
-                elif candidate < dist[neib]:
-                    dist[neib] = candidate
-                    heappush(heap, (weight + min_dist, neib))
-                    cnt[neib] = cnt[idx]
+    def countPaths(self, n: int, roads: List[List[int]]) -> int:
+        adj = defaultdict(list)
+        for u,v,t in roads:
+            adj[u].append((t,v))
+            adj[v].append((t,u))
+        h = [(0,0)]
+        arr = [float("inf")] * n
+        while h:
+            t,node = heappop(h)
+            if t >= arr[node]:
+                continue
+            arr[node] = t
+            for w,nei in adj[node]:
+                heappush(h,(w + t,nei))
+        mint = arr[-1]
+        
+        MOD = (10 ** 9 + 7)
+        @cache
+        def dp(i,total):
+            if i == 0:
+                return 1
+            res = 0
+            for wei, nei in adj[i]:
+                if total + wei + arr[nei] != mint: continue        
+                res = (res + dp(nei, total + wei)) % MOD
+            return res
+        return dp(n-1,0) 
