@@ -25,4 +25,4 @@ class Solution:
                 if total + wei + arr[nei] > mint: continue        
                 res = (res + dp(nei, total + wei)) % MOD
             return res
-        return dp(n-1,0) 
+        return dp(n-1,0) % MOD
