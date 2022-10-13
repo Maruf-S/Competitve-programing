@@ -6,17 +6,14 @@ class Solution:
                 continue
             adj[f].append(t)
         def dijstra(n,arr):
-            h = [(0,n)]
-            visited = set([n])
-            while h:
-                w,node = heappop(h)
+            q = deque([(0,n)])
+            while q:
+                w,node = q.popleft()
                 if w >= arr[node]:
                     continue
                 arr[node] = w
                 for nei in adj[node]:
-                    # if nei not in visited:
-                    visited.add(nei)
-                    heappush(h,(w + 1,nei))
+                    q.append((w + 1,nei))
         arr1 = [float("inf")] * len(edges)
         arr2 = [float("inf")] * len(edges)
         dijstra(node1,arr1)
