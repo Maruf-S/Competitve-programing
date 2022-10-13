@@ -22,7 +22,7 @@ class Solution:
                 return 1
             res = 0
             for wei, nei in adj[i]:
-                if total + wei + arr[nei] > mint: continue        
+                if total + wei + arr[nei] != mint: continue        
                 res = (res + dp(nei, total + wei)) % MOD
             return res
         return dp(n-1,0) 
