@@ -1,20 +1,14 @@
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
-        rows,cols = len(grid),len(grid[0])
-        def withinBounds(rw,co):
-            return rw < rows and rw >= 0 and co < cols and co >= 0
-        visited = set()
-        h = [(grid[0][0],0,0)]
-        dirn = [(1,0),(0,1)]
-        while h:
-            w,r,c = heappop(h)          
-            if (r,c) in visited:
-                continue
-            visited.add((r,c))
-            if r==rows-1 and c == cols - 1:
-                return w
-            for i1,j1 in dirn:
-                nr,nc = r + i1, j1 + c
-                if withinBounds(nr,nc) :
-                    heappush(h,(w + grid[nr][nc],nr,nc))
-            
+        n, m = len(grid), len(grid[0])
+        dp = [[0 for _ in range(m)] for _ in range(n)]
+        for i in range(m):
+            if i == 0: dp[0][i] = grid[0][i]
+            else: dp[0][i] = dp[0][i-1] + grid[0][i]
+        for i in range(n):
+            if i == 0: dp[i][0] = grid[i][0]
+            else: dp[i][0] = dp[i-1][0] + grid[i][0]
+        for i in range(1, n):
+            for j in range(1, m):
+                dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])
+        return dp[-1][-1]
