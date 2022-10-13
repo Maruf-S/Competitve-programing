@@ -14,9 +14,9 @@ class Solution:
                     continue
                 arr[node] = w
                 for nei in adj[node]:
-                    if nei not in visited:
-                        visited.add(nei)
-                        heappush(h,(w + 1,nei))
+                    # if nei not in visited:
+                    visited.add(nei)
+                    heappush(h,(w + 1,nei))
         arr1 = [float("inf")] * len(edges)
         arr2 = [float("inf")] * len(edges)
         dijstra(node1,arr1)
