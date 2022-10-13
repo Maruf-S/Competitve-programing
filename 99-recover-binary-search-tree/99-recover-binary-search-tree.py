@@ -9,29 +9,18 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        prevele  = TreeNode(float("-inf"))
+        s = []
+        prev = None
         drops = []
-        def findPred(node):
-            cur = node.left
-            while cur.right and cur.right!= node:
-                cur = cur.right
-            return cur
-        while root:
-            if not root.left:
-                if prevele.val > root.val:
-                    drops.append((prevele,root))
-                prevele = root
-                root = root.right
-            else:
-                pre = findPred(root)
-                if not pre.right:
-                    pre.right = root
-                    root = root.left
-                else:
-                    pre.right = None
-                    if prevele.val > root.val:
-                        drops.append((prevele,root))
-                    prevele = root
-                    root = root.right
-                    #Why even live ffs I dont remember consentin to be born for this shit
+        while root or s:
+            while root:
+                s.append(root)
+                root = root.left
+            node = s.pop()
+            if prev:
+                if prev.val > node.val:
+                    drops.append([prev,node])
+            prev = node
+            print(node.val)
+            root = node.right
         drops[0][0].val,drops[-1][1].val = drops[-1][1].val,drops[0][0].val
