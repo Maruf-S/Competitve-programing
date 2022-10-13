@@ -16,7 +16,7 @@ class Solution:
         mint = arr[-1]
         
         MOD = (10 ** 9 + 7)
-        @cache
+        @lru_cache(2000)
         def dp(i,total):
             if i == 0:
                 return 1
