@@ -1,25 +1,30 @@
 class Solution:
-    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        prereq = defaultdict(list)
-        for course,prq in prerequisites:
-            prereq[course].append(prq)
+    def findOrder(self, n: int, pre: List[List[int]]) -> List[int]:
+        adj = defaultdict(list)
+        for i,j in pre:
+            adj[i].append(j)
         res = []
-        visiting = {}
-        visited = {}
-        def dfs(c):
-            if c in visiting:
+        visited = set()
+        visiting = set()
+        def dfs(node):
+            if node in visiting:
                 return False
-            if c in visited:
+            if node in visited:
                 return True
-            visiting[c] = 1
-            for i in prereq[c]:
-                if dfs(i) == False:
+            visiting.add(node)
+            for nei in adj[node]:
+                if not dfs(nei):
                     return False
-            del visiting[c]
-            res.append(c)
-            visited[c] = 1
+            res.append(node)
+            visited.add(node)
+            visiting.remove(node)
             return True
-        for i in range(numCourses):
-            if dfs(i) == False:
+        
+        
+        
+        
+        
+        for i in range(n):
+            if not dfs(i):
                 return []
         return res
