@@ -1,24 +1,18 @@
 class Solution:
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    def canFinish(self, n: int, pre: List[List[int]]) -> bool:
+        res = []
         adj = defaultdict(list)
-        for x, y in prerequisites:
-            adj[x].append(y)
+        outgoing = [0] * n
+        for i,j in pre:
+            adj[j].append(i)
+            outgoing[i] += 1
+            
+        q = deque([i for i in range(n) if outgoing[i] == 0])
         
-        visited = set()
-        def dfs(course):
-            if course in visited:
-                return False
-            if not adj[course]:
-                return True
-            visited.add(course)
-            res = True
-            for i in adj[course]:
-                if not dfs(i):
-                    return False
-            visited.remove(course)
-            adj[course] = []
-            return True
-        for i in range(numCourses):
-            if not dfs(i):
-                return False
-        return True
+        while q:
+            node  = q.popleft()
+            for nei in adj[node]:
+                outgoing[nei] -= 1
+                if outgoing[nei] == 0:
+                    q.append(nei)
+        return sum(outgoing) == 0
