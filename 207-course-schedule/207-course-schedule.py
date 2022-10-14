@@ -1,25 +1,24 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        preMap = {}
-        for i in range(numCourses):
-            preMap[i] = []
-        for course,pre in prerequisites:
-            preMap[course].append(pre)
-        visited = {}
+        adj = defaultdict(list)
+        for x, y in prerequisites:
+            adj[x].append(y)
         
-        def dfs(c):
-            if c in visited:
+        visited = set()
+        def dfs(course):
+            if course in visited:
                 return False
-            if preMap[c] == []:
+            if not adj[course]:
                 return True
-            visited[c] = 1
-            for i in preMap[c]:
-                if dfs(i) == False:
+            visited.add(course)
+            res = True
+            for i in adj[course]:
+                if not dfs(i):
                     return False
-            preMap[c] = []
-            del visited[c]
+            visited.remove(course)
+            adj[course] = []
             return True
-        for course in range(numCourses):
-            if dfs(course) == False:
+        for i in range(numCourses):
+            if not dfs(i):
                 return False
         return True
