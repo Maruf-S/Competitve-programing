@@ -1,18 +1,27 @@
 class Solution:
     def findOrder(self, n: int, pre: List[List[int]]) -> List[int]:
-        incoming = [0] * n
         adj = defaultdict(list)
         for i,j in pre:
             adj[j].append(i)
-            incoming[i] += 1
-        
-        q = deque([i for i in range(n) if incoming[i] == 0])
         res = []
-        while q:
-            node = q.popleft()
-            res.append(node)
+        visited = set()
+        visiting = set()
+        def dfs(node,visiting):
+            if node in visiting:
+                return False
+            if node in visited:
+                return True
+            visiting.add(node)
             for nei in adj[node]:
-                incoming[nei] -= 1
-                if incoming[nei] == 0:
-                    q.append(nei)
-        return res if len(res) == n else []
+                if not dfs(nei,visiting):
+                    return False
+            res.append(node)
+            visited.add(node)
+            visiting.remove(node)
+            return True
+        
+        
+        for i in range(n):
+            if not dfs(i,set()):
+                return []
+        return res[::-1]
