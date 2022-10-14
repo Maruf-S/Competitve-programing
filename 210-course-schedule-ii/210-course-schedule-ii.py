@@ -6,14 +6,14 @@ class Solution:
         res = []
         visited = set()
         visiting = set()
-        def dfs(node):
+        def dfs(node,visiting):
             if node in visiting:
                 return False
             if node in visited:
                 return True
             visiting.add(node)
             for nei in adj[node]:
-                if not dfs(nei):
+                if not dfs(nei,visiting):
                     return False
             res.append(node)
             visited.add(node)
@@ -21,10 +21,8 @@ class Solution:
             return True
         
         
-        
-        
-        
         for i in range(n):
-            if not dfs(i):
+            if not dfs(i,set()):
+                print("L",i)
                 return []
         return res
