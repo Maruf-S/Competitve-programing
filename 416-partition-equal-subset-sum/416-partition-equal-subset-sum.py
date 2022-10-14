@@ -3,7 +3,7 @@ class Solution:
         if sum(nums) % 2:
             return False
         target = sum(nums)//2
-        
+        nums = nums[::-1]
         @cache
         def doSolve(i,total):
             if i == len(nums):
