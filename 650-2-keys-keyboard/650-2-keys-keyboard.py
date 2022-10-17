@@ -2,6 +2,7 @@ class Solution:
     def minSteps(self, n: int) -> int:
         if n == 1:
             return 0
+        @cache
         def helper(total,cur,flag):
             # print(total,cur,flag)
             if total == n:
