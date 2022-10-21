@@ -5,8 +5,8 @@ class UnionFind():
     def find(self,x):
         p = self.parent[x]
         while p!= self.parent[p]:
-            # path compression
-            self.parent[p] = self.parent[self.parent[p]]
+            # # path compression
+            # self.parent[p] = self.parent[self.parent[p]]
             p = self.parent[p]
         return p
     def union(self,n1,n2):
