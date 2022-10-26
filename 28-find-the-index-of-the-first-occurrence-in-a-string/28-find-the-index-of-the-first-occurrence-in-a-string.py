@@ -6,7 +6,7 @@ class Solution:
             hash_val = 0
             k = len(s) - 1
             for i in range(len(s)):
-                hash_val += (ord(s[i]) * (11 ** k))
+                hash_val += ((ord(s[i]) * (11 ** k)))
                 k -= 1
             return hash_val
         needle_hash = getHash(needle)
@@ -20,7 +20,8 @@ class Solution:
         for i in range(1,n - k + 1):
             window -= (ord(haystack[i - 1]) * (11 ** (k - 1)))
             window *=11
-            window += ord(haystack[i + k - 1]) 
+            # window %= MOD
+            window += ord(haystack[i + k - 1])
             if window == needle_hash:
                 return i
             
