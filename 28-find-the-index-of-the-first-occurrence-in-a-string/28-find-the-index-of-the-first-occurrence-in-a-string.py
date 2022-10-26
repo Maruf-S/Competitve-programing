@@ -6,7 +6,7 @@ class Solution:
             hash_val = 0
             k = len(s) - 1
             for i in range(len(s)):
-                hash_val += ((ord(s[i]) * (31 ** k) % MOD)) % MOD
+                hash_val += ((ord(s[i]) * (31 ** k))) % MOD
                 k -= 1
             return hash_val % MOD
         needle_hash = getHash(needle) 
