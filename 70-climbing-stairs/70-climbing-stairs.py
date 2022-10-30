@@ -1,10 +1,10 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        @cache
-        def helper(c):
-            if c > n:
-                return 0
-            if c == n:
-                return 1
-            return helper(c + 1) + helper(c + 2)
-        return helper(0)
+        dp = [-1] * (n + 1)
+        dp[-1] = 1
+        for i in range(len(dp) - 2, - 1, -1):
+            res = dp[i + 1]
+            if i + 2 < len(dp):
+                res += dp[i + 2]
+            dp[i] = res
+        return dp[0]
