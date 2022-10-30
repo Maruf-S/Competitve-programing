@@ -1,15 +1,17 @@
 class Solution:
     def networkDelayTime(self, netTimes: List[List[int]], n: int, k: int) -> int:
-        times = [float("inf")] * n
-        times[k - 1] = 0
-        for _ in range(n - 1):
-            tempTimes = times[:]
-            for fr,to,weight in netTimes:
-                if times[fr - 1] + weight < tempTimes[to - 1]:
-                    tempTimes[to - 1] = times[fr - 1] + weight
-            times = tempTimes
-        max_time = max(times)
-        if max_time == float("inf"):
-            # Unable to reach everyone
+        dist = [float("inf")] * (n + 1)
+        heap = [(0,k)]
+        adj = defaultdict(list)
+        for src,dest,w in netTimes:
+            adj[src].append((w,dest))
+        
+        while heap:
+            w,node = heappop(heap)
+            if w < dist[node]:
+                dist[node] = w
+                for wn,nei in adj[node]:
+                    heappush(heap,(wn + w, nei))
+        if float("inf") in dist[1:]:
             return -1
-        return max_time
+        return max(dist[1:])
