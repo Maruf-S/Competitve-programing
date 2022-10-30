@@ -1,6 +1,10 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        one,two = 1,1
-        for i in range(n - 1):
-            one,two = one + two,one
-        return one
+        @cache
+        def helper(c):
+            if c > n:
+                return 0
+            if c == n:
+                return 1
+            return helper(c + 1) + helper(c + 2)
+        return helper(0)
