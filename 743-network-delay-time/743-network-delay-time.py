@@ -12,6 +12,8 @@ class Solution:
                 dist[node] = w
                 for wn,nei in adj[node]:
                     heappush(heap,(wn + w, nei))
-        if float("inf") in dist[1:]:
+        ans  = max(dist[1:])
+        if ans == float("inf"):
             return -1
-        return max(dist[1:])
+        return ans
+    
