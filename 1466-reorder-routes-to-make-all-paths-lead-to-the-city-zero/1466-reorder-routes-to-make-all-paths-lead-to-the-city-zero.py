@@ -1,22 +1,22 @@
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
-        edges = { (a,b) for a,b in connections}
-        neighbors = defaultdict(list)
-        visit = set()
-        change = 0
-        for i,j in connections:
-            neighbors[i].append(j)
-            neighbors[j].append(i)
-
+        connset = set(tuple(c) for c in connections)
+        adj = defaultdict(list)
+        for s,d in connections:
+            adj[s].append(d)
+            adj[d].append(s)
+        visited = set([0])
         q = deque([0])
+        ans = 0
+        # print(adj)
         while q:
-            for i in range(len(q)):
-                city = q.popleft()
-                visit.add(city)
-                for neighbor in neighbors[city]:
-                    if neighbor in visit:
-                        continue
-                    if (neighbor,city) not in edges:
-                        change += 1
-                    q.append(neighbor)
-        return change
+            node = q.popleft()
+            visited.add(node)
+            for nei in adj[node]:
+                if nei not in visited:
+                    if (node,nei) in connset:
+                        # print((node,nei))
+                        ans += 1
+                    visited.add(nei)
+                    q.append(nei)
+        return ans
