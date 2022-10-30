@@ -1,7 +1,7 @@
 class Solution:
     def minimumRounds(self, tasks: List[int]) -> int:
         tasks.sort()
-        @cache
+        @lru_cache(2000)
         def helper(i):
             if i == len(tasks):
                 return 0
