@@ -5,6 +5,7 @@ class UF():
     
     def find(self,n):
         while self.par[n] != n:
+            self.par[n] = self.par[self.par[n]]
             n = self.par[n]
         return n
     def union(self,n1,n2):
