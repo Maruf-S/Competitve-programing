@@ -1,33 +1,39 @@
-class Solution(object):
-    def findSecretWord(self, wordlist, master):
-		
-        def pair_matches(a, b):         # count the number of matching characters
-            return sum(c1 == c2 for c1, c2 in zip(a, b))
+# """
+# This is Master's API interface.
+# You should not implement it, or speculate about its implementation
+# """
+# class Master:
+#     def guess(self, word: str) -> int:
 
-        def most_overlap_word():
-            counts = [[0 for _ in range(26)] for _ in range(6)]     # counts[i][j] is nb of words with char j at index i
-            for word in candidates:
-                for i, c in enumerate(word):
-                    counts[i][ord(c) - ord("a")] += 1
-
-            best_score = 0
-            for word in candidates:
-                score = 0
-                for i, c in enumerate(word):
-                    score += counts[i][ord(c) - ord("a")]           # all words with same chars in same positions
-                if score > best_score:
-                    best_score = score
-                    best_word = word
-
-            return best_word
-
-        candidates = wordlist[:]        # all remaining candidates, initially all words
-        while candidates:
-
-            s = most_overlap_word()     # guess the word that overlaps with most others
-            matches = master.guess(s)
-
-            if matches == 6:
-                return
-
-            candidates = [w for w in candidates if pair_matches(s, w) == matches]   # filter words with same matches
+class Solution:
+    def findSecretWord(self, words: List[str], master: 'Master') -> None:
+        pattern = {}
+        for word in words:
+            for i,c in enumerate(word):
+                pattern[(i,c)] = pattern.get((i,c),0) + 1
+        def calculateProb(word):
+            score = 0
+            for i,c in enumerate(word):
+                score += pattern.get((i,c),0) + 1
+            return score
+        words.sort(key = calculateProb)
+        def canMatch(guess_word,word,matches):
+            if guess_word == word:
+                return False
+            for x,y in zip(guess_word,word):
+                if x == y:
+                    matches -= 1
+            return not matches
+        idx = -1
+        while words:
+            guess0 = words[idx]
+            test = master.guess(guess0)
+            if test == 6:
+                break
+            elif test == 0:
+                words = [w for w in words if not any(a == b for a,b in zip(guess0,w))]
+                idx = -1
+            else:
+                words = [w for w in words if canMatch(guess0,w,test)]
+                idx = 0
+                
