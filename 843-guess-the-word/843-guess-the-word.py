@@ -19,6 +19,7 @@ class Solution:
             return not matches
         idx = -1
         while words:
+            words.sort(key = calculateProb)
             guess0 = words[idx]
             test = master.guess(guess0)
             if test == 6:
@@ -28,5 +29,5 @@ class Solution:
                 idx = -1
             else:
                 words = [w for w in words if canMatch(guess0,w,test)]
-                idx = 0
+                idx = -1
                 
