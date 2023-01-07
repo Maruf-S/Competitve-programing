@@ -35,5 +35,5 @@ class Solution:
                 idx = -1
             else:
                 words = [w for w in words if canMatch(guess0,w,test)]
-                idx = 0
+                idx = -1
                 
